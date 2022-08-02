@@ -117,7 +117,7 @@ namespace crossroads {
             setLed(KMotor.rechts, KState.aus);
             motorStop(KMotor.beide, KStop.Bremsen);
             setRgbLed(KRgbLed.All, KRgbColor.rot, 0);
-            setTraffic(KTrafficColor.All, KState.aus);
+            setLed(KTrafficColor.All, KState.aus);
         }
     }
 
@@ -155,8 +155,8 @@ namespace crossroads {
     }
 
     //="Schalte Ampel $nr"
-    //% blockId=K_setTraffic block="Schalte Ampel |%nr| |%mode"
-    export function setTraffic(nr: KMotor, mode: KTrafficColor) {
+    //% blockId=K_setLed block="Schalte Ampel |%nr| |%mode"
+    export function setLed(nr: KMotor, mode: KTrafficColor) {
         if (mode == KTrafficColor.rot) {
             writeMotor(nr, 0, 1);
         }
