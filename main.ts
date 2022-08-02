@@ -110,7 +110,7 @@ namespace crossroads {
             setLed(KMotor.rechts, KState.aus);
             motorStop(KMotor.beide, KStop.Bremsen);
             setRgbLed(KRgbLed.All, KRgbColor.rot, 0);
-            setLed(KTrafficColor.All, KState.aus);
+            setTraffic(KTrafficColor.All, KState.aus);
         }
     }
 
@@ -135,7 +135,7 @@ namespace crossroads {
     }
 
     //% speed.min=5 speed.max=100
-    //% blockId=K_motor block="Schalte Motor |%KMotor| |%KDir| mit |%number| %"
+    //% blockId=K_motor block="Schalte TEST Motor |%KMotor| |%KDir| mit |%number| %"
     export function motor(nr: KMotor, direction: KDir, speed: number) {
         if (speed > 100) {
             speed = 100
@@ -148,8 +148,8 @@ namespace crossroads {
     }
 
     //="Schalte Ampel $nr"
-    //% blockId=K_setLed block="Schalte Ampel |%nr| |%mode"
-    export function setLed(nr: KMotor, mode: KTrafficColor) {
+    //% blockId=K_setTraffic block="Schalte Ampel |%nr| |%mode"
+    export function setTraffic(nr: KMotor, mode: KTrafficColor) {
         if (mode == KTrafficColor.rot) {
             writeMotor(nr, 0, 1);
         }
