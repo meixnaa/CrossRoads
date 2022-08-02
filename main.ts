@@ -110,7 +110,7 @@ namespace crossroads {
             setLed(KMotor.rechts, KState.aus);
             motorStop(KMotor.beide, KStop.Bremsen);
             setRgbLed(KRgbLed.All, KRgbColor.rot, 0);
-            setTraffic(KTrafficColor.All, KState.aus);
+            setTraffic(KTrafficColor.All, 0);
         }
     }
 
