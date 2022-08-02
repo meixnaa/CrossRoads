@@ -1,6 +1,6 @@
 {
-    "name": "Ohne Titel",
-    "description": "",
+    "name": "CrossRoads",
+    "description": "MakeCode Erweiterung für Education Line",
     "dependencies": {
         "core": "*",
         "radio": "*"
