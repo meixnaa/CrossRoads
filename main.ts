@@ -101,8 +101,14 @@ enum KCheck {
     greaterThan
 }
 
+enum KTrafficColor {
+    rot,
+    gelb,
+    grün,
+}
+
 //% color="#4287f5" icon="\uf013" block="CrossRoads"
-namespace callibot {
+namespace crossroads {
 
     function KInit() {
         if (KInitialized != 1) {
@@ -147,10 +153,10 @@ namespace callibot {
         writeMotor(nr, direction, speed);
     }
 
-    //="Stoppe Motor $nr"
-    //% blockId=K_motorStop block="Stoppe Motor |%nr| |%mode"
-    export function motorStop(nr: KMotor, mode: KStop) {
-        if (mode == KStop.Frei) {
+    //="Schalte Ampel $nr"
+    //% blockId=K_motorStop block="Schalte Ampel |%nr| |%mode"
+    export function motorStop(nr: KMotor, mode: KTrafficColor) {
+        if (mode == KTrafficColor.Frei) {
             writeMotor(nr, 0, 1);
         }
         else {
