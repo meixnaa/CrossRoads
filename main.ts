@@ -68,10 +68,10 @@ enum KCheck {
 }
 
 enum KTrafficColor {
-    rot,
-    gelb,
-    grün,
-    aus,
+    aus = 0,
+    rot = 1,
+    gelb = 2,
+    grün = 3,
 }
 
 enum KTrafficMain {
@@ -116,11 +116,10 @@ namespace crossroads {
         
     }    
         
-    function writeTrafficMain(nr: KTrafficColor, direction: KDir, speed: number) {
-        let buffer = pins.createBuffer(3)
+    function writeTrafficMain(nr: KTrafficColor, color: KTrafficColor) {
+        let buffer = pins.createBuffer(2)
         KInit()
-        buffer[1] = direction;
-        buffer[2] = speed;
+        buffer[1] = color;
         switch (nr) {
             case KTrafficColor.rot:
                 buffer[0] = 0x00;
@@ -157,10 +156,16 @@ namespace crossroads {
     //% blockId=K_setTraffic block="Schalte Ampel |%nr| |%mode"
     export function setTraffic(nr: KTrafficMain, mode: KTrafficColor) {
         if (mode == KTrafficColor.rot) {
-            writeMotor(nr, 0, 1);
+            writeTrafficMain(nr, 1);
+        }
+        if (mode == KTrafficColor.gelb) {
+            writeTrafficMain(nr, 2);
+        }
+        if (mode == KTrafficColor.grün) {
+            writeTrafficMain(nr, 3);
         }
         else {
-            writeMotor(nr, 0, 0);
+            writeTrafficMain(nr, 0);
         }
     }
 
