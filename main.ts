@@ -113,6 +113,31 @@ namespace crossroads {
                 pins.i2cWriteBuffer(0x20, buffer);
                 break;
         }
+        
+    }    
+        
+    function writeTrafficMain(nr: KTrafficColor, direction: KDir, speed: number) {
+        let buffer = pins.createBuffer(3)
+        KInit()
+        buffer[1] = direction;
+        buffer[2] = speed;
+        switch (nr) {
+            case KTrafficColor.rot:
+                buffer[0] = 0x00;
+                pins.i2cWriteBuffer(0x20, buffer);
+                break;
+            case KTrafficColor.gelb:
+                buffer[0] = 0x00;
+                pins.i2cWriteBuffer(0x20, buffer);
+            case KTrafficColor.grün:
+                buffer[0] = 0x02;
+                pins.i2cWriteBuffer(0x20, buffer);
+                break;
+            case KTrafficColor.aus:
+                buffer[0] = 0x00;
+                pins.i2cWriteBuffer(0x20, buffer);
+        }    
+        
     }
 
     //% speed.min=5 speed.max=100
