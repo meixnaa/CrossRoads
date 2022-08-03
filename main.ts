@@ -75,10 +75,10 @@ enum KTrafficColor {
 }
 
 enum KTrafficMain {
-    Hauptstraße links,
-    Hauptstraße rechts,
-    Nebenstraße oben,
-    Nebenstraße unten,    
+    Hauptstraße-Links,
+    Hauptstraße-Rechts,
+    Nebenstraße-Oben,
+    Nebenstraße-Unten,    
 }
 
 //% color="#4287f5" icon="\uf013" block="CrossRoads"
