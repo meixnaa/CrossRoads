@@ -98,6 +98,14 @@ enum KTrafficColor {
     rot,
     gelb,
     grün,
+    aus,
+}
+
+enum KTrafficMain {
+    Hauptstraße links,
+    Hauptstraße rechts,
+    Nebenstraße oben,
+    Nebenstraße unten,    
 }
 
 //% color="#4287f5" icon="\uf013" block="CrossRoads"
@@ -149,7 +157,7 @@ namespace crossroads {
 
     //="Schalte Ampel $nr"
     //% blockId=K_setTraffic block="Schalte Ampel |%nr| |%mode"
-    export function setTraffic(nr: KMotor, mode: KTrafficColor) {
+    export function setTraffic(nr: KTrafficMain, mode: KTrafficColor) {
         if (mode == KTrafficColor.rot) {
             writeMotor(nr, 0, 1);
         }
