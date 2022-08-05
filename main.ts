@@ -75,10 +75,21 @@ enum KTrafficColor {
 }
 
 enum KTrafficMain {
-    Hauptstraße-Links,
-    Hauptstraße-Rechts,
-    Nebenstraße-Oben,
-    Nebenstraße-Unten,    
+    Hauptstraße1,
+    Hauptstraße2,
+    Nebenstraße1,
+    Nebenstraße2,    
+}
+
+enum KTrafficSide {
+    Fußgängerampel1,
+    Fußgängerampel2,
+    Fußgängerampel3,
+    Fußgängerampel4,
+    Fußgängerampel5,
+    Fußgängerampel6,
+    Fußgängerampel7,
+    Fußgängerampel8,
 }
 
 //% color="#4287f5" icon="\uf013" block="CrossRoads"
@@ -95,28 +106,7 @@ namespace crossroads {
         }
     }
 
-    function writeMotor(nr: KMotor, direction: KDir, speed: number) {
-        let buffer = pins.createBuffer(3)
-        KInit()
-        buffer[1] = direction;
-        buffer[2] = speed;
-        switch (nr) {
-            case KMotor.links:
-                buffer[0] = 0x00;
-                pins.i2cWriteBuffer(0x20, buffer);
-                break;
-            case KMotor.beide:
-                buffer[0] = 0x00;
-                pins.i2cWriteBuffer(0x20, buffer);
-            case KMotor.rechts:
-                buffer[0] = 0x02;
-                pins.i2cWriteBuffer(0x20, buffer);
-                break;
-        }
-        
-    }    
-        
-    function writeTrafficMain(nr: KTrafficColor, color: KTrafficColor) {
+    function writeTrafficMain(nr: KTrafficMain, color: KTrafficColor) {
         let buffer = pins.createBuffer(2)
         KInit()
         buffer[1] = color;
@@ -139,19 +129,6 @@ namespace crossroads {
         
     }
 
-    //% speed.min=5 speed.max=100
-    //% blockId=K_motor block="Schalte TEST Motor |%KMotor| |%KDir| mit |%number| %"
-    export function motor(nr: KMotor, direction: KDir, speed: number) {
-        if (speed > 100) {
-            speed = 100
-        }
-        if (speed < 0) {
-            speed = 0
-        }
-        speed = speed * 255 / 100
-        writeMotor(nr, direction, speed);
-    }
-
     //="Schalte Ampel $nr"
     //% blockId=K_setTraffic block="Schalte Ampel |%nr| |%mode"
     export function setTraffic(nr: KTrafficMain, mode: KTrafficColor) {
@@ -170,8 +147,24 @@ namespace crossroads {
     }
 
 
-    //% blockId=K_SetLed block="Schalte LED |%KSensor| |%KState"
-    export function setLed(led: KMotor, state: KState) {
+    //% blockId=K_SetLed block="Schalte Fußgänger Ampel |%nr| |%mode"
+    export function setTraffic(nr: KTrafficSide, mode: KTrafficColor)) {
+          if (mode == KTrafficColor.rot) {
+            writeTrafficMain(nr, 1);
+        }
+        if (mode == KTrafficColor.gelb) {
+            writeTrafficMain(nr, 2);
+        }
+        if (mode == KTrafficColor.grün) {
+            writeTrafficMain(nr, 3);
+        }
+        else {
+            writeTrafficMain(nr, 0);
+        }
+        
+        
+        
+     /**
         let buffer = pins.createBuffer(2)
         KInit()
         buffer[0] = 0;      // SubAddress of LEDs
@@ -203,7 +196,7 @@ namespace crossroads {
                 break;
         }
         buffer[1] = KLedState;
-        pins.i2cWriteBuffer(0x21, buffer);
+        pins.i2cWriteBuffer(0x21, buffer); */
     }
 
     //% intensity.min=0 intensity.max=8
