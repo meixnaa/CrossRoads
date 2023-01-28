@@ -54,9 +54,3 @@ function readRoadSensor(sensor: RoadSensor): boolean {
     let sensorState = input & (1 << (sensor + 8));
     return sensorState != 0;
 }
-
-// Funktion zum Auslesen des Lichtsensors im Sonnensymbol
-// Gibt einen analogen Wert im Bereich 0..1023 zurück
-function readLightSensor(): number {
-    return pins.analogReadPin(AnalogPin.P0);
-}
