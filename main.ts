@@ -27,7 +27,7 @@ enum RoadSensor {
 
 
 //% color="#AA278D"
-namespace enums {
+namespace CrossRoad {
 
     //% block
     export function Fußgängertasten(choice: PedestrianButton) {
