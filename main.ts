@@ -25,6 +25,20 @@ enum RoadSensor {
     SENSOR_8
 }
 
+
+//% color="#AA278D"
+namespace enums {
+
+    //% block
+    export function Fußgängertasten(choice: PedestrianButton) {
+
+    }
+
+    //% block
+    export function Magnetsensoren(choice: RoadSensor) {
+
+    }
+}
 // Funktion zum Auslesen des Zustands einer Fußgängertaste
 // Gibt "true" zurück, wenn die Taste betätigt ist, ansonsten "false"
 function readPedestrianButton(button: PedestrianButton): boolean {
